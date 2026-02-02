@@ -20,7 +20,11 @@ const PDFViewer = () => {
     const [isHovering, setIsHovering] = useState(false);
 
     const onResize = () => {
-        setContainerWidth(Math.min(window.innerWidth * 0.9, 1000)); // Max width 1000px, 90% of screen width otherwise
+        // On mobile (< 768px), use almost full width (minus small padding)
+        // On desktop, use 90% up to 1000px
+        const isMobile = window.innerWidth < 768;
+        const targetWidth = isMobile ? window.innerWidth - 24 : Math.min(window.innerWidth * 0.9, 1000);
+        setContainerWidth(targetWidth);
     };
 
     useEffect(() => {
@@ -54,10 +58,10 @@ const PDFViewer = () => {
           </div>
 
           <div 
-            className="flex-grow flex flex-col items-center p-4 md:p-8 relative"
+            className="flex-grow flex flex-col items-center p-2 md:p-8 relative"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
-            onTouchStart={() => setIsHovering(true)} // For mobile: tap to show
+            onClick={() => setIsHovering(!isHovering)} // Toggle on click/tap
           >
             
             {/* Background Effects */}
@@ -69,21 +73,21 @@ const PDFViewer = () => {
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
-               className="w-full max-w-5xl z-10 flex flex-col gap-6"
+               className="w-full max-w-5xl z-10 flex flex-col gap-4 md:gap-6"
             >
                 {/* Header Section */}
-                <div className="text-center mb-2">
-                    <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-2">
+                <div className="text-center mb-1 md:mb-2">
+                    <h1 className="text-2xl md:text-5xl font-black text-white tracking-tight mb-1 md:mb-2">
                         E-Newspaper <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Kalchakra</span>
                     </h1>
-                    <p className="text-stone-400">Read the latest edition of our independent journalism.</p>
+                    <p className="text-stone-400 text-xs md:text-base">Read the latest edition of our independent journalism.</p>
                 </div>
 
                 {/* Main PDF Container */}
                 <div className="relative group perspective-1000">
                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                    
-                   <div className="relative bg-stone-900 rounded-xl overflow-hidden shadow-2xl border border-white/5 min-h-[600px] flex justify-center">
+                   <div className="relative bg-stone-900 rounded-xl overflow-hidden shadow-2xl border border-white/5 min-h-[50vh] flex justify-center">
                        
                        {loading && (
                           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-stone-900/80 backdrop-blur-sm">
@@ -96,7 +100,7 @@ const PDFViewer = () => {
                          file={pdfPath}
                          onLoadSuccess={onDocumentLoadSuccess}
                          loading={null}
-                         className="max-w-full overflow-auto flex justify-center p-4"
+                         className="max-w-full overflow-auto flex justify-center p-1 md:p-4"
                        >
                          <Page 
                            key={`page_${pageNumber}`}
@@ -120,9 +124,9 @@ const PDFViewer = () => {
                         pointerEvents: isHovering ? "auto" : "none"
                     }}
                     transition={{ duration: 0.3 }}
-                    className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-2xl"
+                    className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-2xl"
                 >
-                    <div className="bg-stone-900/80 backdrop-blur-md border border-white/10 p-3 rounded-2xl shadow-2xl flex flex-wrap items-center justify-between gap-4 md:gap-6 px-4 md:px-6">
+                    <div className="bg-stone-900/90 backdrop-blur-md border border-white/10 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl flex flex-wrap items-center justify-between gap-3 md:gap-6 px-3 md:px-6">
                         
                         {/* Page Navigation */}
                         <div className="flex items-center gap-2 md:gap-4 bg-black/20 rounded-xl p-1.5 border border-white/5 mx-auto md:mx-0 order-2 md:order-1">
