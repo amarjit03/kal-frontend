@@ -14,7 +14,7 @@ const Ticker = () => {
                     {[1, 2, 3, 4].map((i) => (
                         <div key={i} className="flex items-center">
                             <span className="mx-8 text-sm md:text-base font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white uppercase drop-shadow-sm">
-                                🚀 Something Big Is Coming — Our First E-Newspaper Launches Feb 02, 2026!
+                                🚀 The E-Newspaper is LIVE! Read the First Edition Now!
                             </span>
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-50"></span>
                             <span className="mx-8 text-sm md:text-base font-light tracking-widest text-blue-200/80 uppercase">
@@ -27,8 +27,8 @@ const Ticker = () => {
 
                 {/* Absolute positioned Action Button on the right (desktop) */}
                 <div className="absolute right-0 top-0 bottom-0 px-6 flex items-center bg-gradient-to-l from-indigo-950 via-indigo-950/90 to-transparent">
-                    <Link to="/launch" className="group flex items-center space-x-2 text-xs font-bold uppercase border border-blue-400/30 bg-blue-500/10 px-4 py-1.5 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 backdrop-blur-sm">
-                        <span>View Launch</span>
+                    <Link to="/e-newspaper" className="group flex items-center space-x-2 text-xs font-bold uppercase border border-blue-400/30 bg-blue-500/10 px-4 py-1.5 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 backdrop-blur-sm">
+                        <span>Read E-Newspaper</span>
                         <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </Link>
                 </div>
