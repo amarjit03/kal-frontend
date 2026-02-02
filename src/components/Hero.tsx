@@ -87,7 +87,7 @@ const Hero = () => {
                     transition={{ duration: 1.5, ease: "easeOut" }}
                 >
                     <h1 className="text-4xl md:text-7xl font-extralight tracking-tight text-white mb-6">
-                        KALCHAKRA
+                        KAALCHAKRA
                     </h1>
                     <div className="h-px w-24 bg-blue-500 mx-auto mb-8"></div>
                 </motion.div>

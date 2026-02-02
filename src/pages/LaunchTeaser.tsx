@@ -66,7 +66,7 @@ const LaunchTeaser = () => {
                     transition={{ duration: 1.5, ease: "easeOut" }}
                 >
                     <h2 className="text-sm md:text-xl font-medium uppercase text-blue-400 mb-8 tracking-[0.5em]">
-                        Kalchakra Presents
+                        Kaalchakra Presents
                     </h2>
                 </motion.div>
 

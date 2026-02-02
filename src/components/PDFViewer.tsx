@@ -78,7 +78,7 @@ const PDFViewer = () => {
                 {/* Header Section */}
                 <div className="text-center mb-1 md:mb-2">
                     <h1 className="text-2xl md:text-5xl font-black text-white tracking-tight mb-1 md:mb-2">
-                        E-Newspaper <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Kalchakra</span>
+                        E-Newspaper <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Kaalchakra</span>
                     </h1>
                     <p className="text-stone-400 text-xs md:text-base">Read the latest edition of our independent journalism.</p>
                 </div>
@@ -175,7 +175,7 @@ const PDFViewer = () => {
                         {/* Download Button */}
                         <a 
                             href={pdfPath} 
-                            download="Kalchakra_E-Newspaper.pdf"
+                            download="Kaalchakra_E-Newspaper.pdf"
                             className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-blue-900/30 flex items-center gap-2 transition-all hover:scale-105 active:scale-95 order-1 md:order-3 w-full md:w-auto justify-center"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
