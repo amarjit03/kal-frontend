@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
@@ -17,6 +16,17 @@ const PDFViewer = () => {
     const [pageNumber, setPageNumber] = useState<number>(1);
     const [scale, setScale] = useState(1.0);
     const [loading, setLoading] = useState(true);
+    const [containerWidth, setContainerWidth] = useState<number>(0);
+
+    const onResize = () => {
+        setContainerWidth(Math.min(window.innerWidth * 0.9, 1000)); // Max width 1000px, 90% of screen width otherwise
+    };
+
+    useEffect(() => {
+        onResize();
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, []);
 
     function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
         setNumPages(numPages);
@@ -86,6 +96,7 @@ const PDFViewer = () => {
                            key={`page_${pageNumber}`}
                            pageNumber={pageNumber} 
                            scale={scale}
+                           width={containerWidth}
                            renderTextLayer={false}
                            renderAnnotationLayer={false}
                            className="shadow-[0_0_30px_rgba(0,0,0,0.5)] !bg-white"
