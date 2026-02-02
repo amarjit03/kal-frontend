@@ -17,6 +17,7 @@ const PDFViewer = () => {
     const [scale, setScale] = useState(1.0);
     const [loading, setLoading] = useState(true);
     const [containerWidth, setContainerWidth] = useState<number>(0);
+    const [isHovering, setIsHovering] = useState(false);
 
     const onResize = () => {
         setContainerWidth(Math.min(window.innerWidth * 0.9, 1000)); // Max width 1000px, 90% of screen width otherwise
@@ -52,7 +53,12 @@ const PDFViewer = () => {
             <Navbar />
           </div>
 
-          <div className="flex-grow flex flex-col items-center p-4 md:p-8 relative">
+          <div 
+            className="flex-grow flex flex-col items-center p-4 md:p-8 relative"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            onTouchStart={() => setIsHovering(true)} // For mobile: tap to show
+          >
             
             {/* Background Effects */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -108,8 +114,12 @@ const PDFViewer = () => {
                 {/* Floating Controls Bar */}
                 <motion.div 
                     initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5 }}
+                    animate={{ 
+                        y: isHovering ? 0 : 50, 
+                        opacity: isHovering ? 1 : 0,
+                        pointerEvents: isHovering ? "auto" : "none"
+                    }}
+                    transition={{ duration: 0.3 }}
                     className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-2xl"
                 >
                     <div className="bg-stone-900/80 backdrop-blur-md border border-white/10 p-3 rounded-2xl shadow-2xl flex flex-wrap items-center justify-between gap-4 md:gap-6 px-4 md:px-6">
