@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -7,12 +8,12 @@ const Navbar = () => {
     return (
         <nav className="w-full bg-stone-950/90 backdrop-blur-md border-b border-white/10 relative z-50">
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div className="flex items-center space-x-3">
+                <Link to="/" className="flex items-center space-x-3">
                     <img src="/logo.jpeg" alt="Kaalchakra Logo" className="h-10 w-10 rounded-full object-cover" />
                     <div className="text-xl md:text-2xl font-light tracking-widest text-white">
                         KAALCHAKRA
                     </div>
-                </div>
+                </Link>
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex space-x-8 text-sm font-medium text-stone-300">
