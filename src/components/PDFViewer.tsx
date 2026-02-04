@@ -112,7 +112,28 @@ const PDFViewer = () => {
                            className="shadow-[0_0_30px_rgba(0,0,0,0.5)] !bg-white"
                          />
                        </Document>
-                   </div>
+
+                        {/* Side Navigation Buttons - Desktop */}
+                        <>
+                            <button
+                                disabled={pageNumber <= 1}
+                                onClick={(e) => { e.stopPropagation(); previousPage(); }}
+                                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-white/20 hover:scale-110 active:scale-95 transition-all disabled:opacity-0 disabled:pointer-events-none hidden md:flex items-center justify-center"
+                                title="Previous Page"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+
+                            <button
+                                disabled={pageNumber >= (numPages || 1)}
+                                onClick={(e) => { e.stopPropagation(); nextPage(); }}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-white/20 hover:scale-110 active:scale-95 transition-all disabled:opacity-0 disabled:pointer-events-none hidden md:flex items-center justify-center"
+                                title="Next Page"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </>
+                    </div>
                 </div>
 
                 {/* Floating Controls Bar */}
